@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:notes/View/NotesDetailes/NotesDetailes.dart';
 
-import 'View/home.dart';
+import 'View/AddNote/AddNote.dart';
+import 'View/home/NotesView.dart';
 
 void main() {
   runApp(const NotesApp());
@@ -8,14 +10,18 @@ void main() {
 
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Botes App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.dark, useMaterial3: true),
-      home: NotesView(),
+      routes: {
+        NotesView.id :(context) => const NotesView(),
+        NotesDetailes.id :(context) => const NotesDetailes(),
+        AddNote.id :(context) =>  AddNote(),
+      },
+      home: const SafeArea(child: NotesView()),
     );
   }
 }
