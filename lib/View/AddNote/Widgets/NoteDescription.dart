@@ -7,7 +7,7 @@ class NoteDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return const TextField(
       minLines: 3,
       maxLines: 5,
       decoration: InputDecoration(

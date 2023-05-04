@@ -14,17 +14,17 @@ class NotesDetailes extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
+          children:  [
+            const Text(
               'Title',
               style: TextStyle(fontSize: 40),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
                 'dkdfkmsdklfnlksdnflkdsnklfnksldnflkdnfklndslkfnlkdsnklfnsdlknflksdnflkndslkfnlkdsnflkdnflknsdlknflkdsnflksndklfnsdklnflskdnflksdnfkldnfkldskl'),
-            SizedBox(height: 30),
-            ImageNote(),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
+            const ImageNote(),
+            const SizedBox(height: 30),
             VoiceNote()
           ],
         ),
