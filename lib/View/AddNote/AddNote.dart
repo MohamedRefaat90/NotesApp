@@ -4,12 +4,15 @@ import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 
 import 'Widgets/NoteDescription.dart';
 import 'Widgets/NoteTitle.dart';
-import 'Widgets/PickFile.dart';
+import 'Widgets/pickImageFile.dart';
 import 'Widgets/addButton.dart';
+import 'Widgets/pickVoiceFile.dart';
 
 class AddNote extends StatelessWidget {
   dynamic selected;
   static String id = 'AddNote';
+
+  AddNote({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +34,9 @@ class AddNote extends StatelessWidget {
                   const SizedBox(height: 20),
                   const NoteDescription(),
                   const SizedBox(height: 20),
-                  pickFile(typeOfFile: "Image"),
+                  pickImageFile(),
                   const SizedBox(height: 20),
-                  pickFile(typeOfFile: "Voice"),
+                  pickVoiceFile(),
                   const SizedBox(height: 50),
                   const AddButton()
                 ],

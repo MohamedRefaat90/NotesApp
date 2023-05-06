@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-
+import 'package:file_picker/file_picker.dart';
 import '../Widgets/bottomSheet.dart';
 
 part 'add_note_state.dart';
@@ -16,6 +16,8 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   RecorderController controller = RecorderController();
 
   dynamic voiceType;
+  bool pickImageSuccess = false;
+  bool pickVoiceSuccess = false;
 
   startRecord() async {
     controller
@@ -28,6 +30,8 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     if (hasPermission) {
       emit(AddNoteVoiceLoading());
       await controller.record();
+      emit(AddNoteVoiceSuccess());
+
     }
   }
 
@@ -36,9 +40,22 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     emit(AddNoteVoiceSuccess());
   }
 
- void openBottomSheet(BuildContext context) {
+  void openBottomSheet(BuildContext context) {
     // emit(AddNoteVoiceLoading());
     bottomSheet(context);
+  }
+
+  pickAudioFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      pickVoiceSuccess = true;
+      emit(AddNoteVoiceSuccess());
+    } else {
+
+      emit(AddNoteVoiceFailure());
+    }
   }
 
   void pickImage(String type) async {
@@ -50,6 +67,9 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     if (image != null) {
       file = File(image.path);
       var imgName = basename(image.path);
+emit(AddNoteImageSuccess());
+    }else{
+emit(AddNoteImageFailure());
     }
   }
 }
