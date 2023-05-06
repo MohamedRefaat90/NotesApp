@@ -4,13 +4,11 @@ class NoteModel {
   final String? note;
   final String? image;
   final String? record;
-  final String? priorty;
 
   NoteModel({
     required this.title,
     required this.note,
     required this.image,
     required this.record,
-    required this.priorty,
   });
 }

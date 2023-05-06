@@ -7,7 +7,16 @@ bottomSheet(BuildContext context) {
   return showModalBottomSheet(
       context: context,
       builder: (context) {
-        return Container(
+        return const BottomSheet();
+      });
+}
+
+class BottomSheet extends StatelessWidget {
+const BottomSheet({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return Container(
           width: double.infinity,
           height: 200,
           decoration: const BoxDecoration(color: Colors.teal),
@@ -16,5 +25,5 @@ bottomSheet(BuildContext context) {
             children: [const AudioWave(), RecordeButton()],
           ),
         );
-      });
+  }
 }
