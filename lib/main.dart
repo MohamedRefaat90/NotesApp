@@ -9,11 +9,13 @@ import 'package:notes/blocObserver.dart';
 
 import 'View/AddNote/AddNote.dart';
 import 'View/NotesView/NotesView.dart';
+import 'constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = myBlocObserver();
   await Hive.initFlutter();
+  await Hive.openBox(kNotesBox);
 
   runApp(const NotesApp());
 }

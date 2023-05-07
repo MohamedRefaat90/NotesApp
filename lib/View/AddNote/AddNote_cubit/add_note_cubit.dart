@@ -4,7 +4,6 @@ import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:file_picker/file_picker.dart';
 import '../Widgets/bottomSheet.dart';
 
@@ -18,6 +17,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   dynamic voiceType;
   bool pickImageSuccess = false;
   bool pickVoiceSuccess = false;
+  AutovalidateMode? autovalidateMode = AutovalidateMode.disabled;
 
   startRecord() async {
     controller
@@ -31,13 +31,13 @@ class AddNoteCubit extends Cubit<AddNoteState> {
       emit(AddNoteVoiceLoading());
       await controller.record();
       emit(AddNoteVoiceSuccess());
-
     }
   }
 
-  stopRecode() async {
+  Future<String?> stopRecode() async {
     final path = await controller.stop();
     emit(AddNoteVoiceSuccess());
+    return path;
   }
 
   void openBottomSheet(BuildContext context) {
@@ -45,20 +45,21 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     bottomSheet(context);
   }
 
-  pickAudioFile() async {
+  Future<String?> pickAudioFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
       File file = File(result.files.single.path!);
       pickVoiceSuccess = true;
       emit(AddNoteVoiceSuccess());
+      return file.path;
     } else {
-
       emit(AddNoteVoiceFailure());
+      return "Pick Failed";
     }
   }
 
-  void pickImage(String type) async {
+  Future<String?> pickImage(String type) async {
     final ImagePicker picker = ImagePicker();
     late File file;
     final XFile? image = await picker.pickImage(
@@ -66,10 +67,11 @@ class AddNoteCubit extends Cubit<AddNoteState> {
 
     if (image != null) {
       file = File(image.path);
-      var imgName = basename(image.path);
-emit(AddNoteImageSuccess());
-    }else{
-emit(AddNoteImageFailure());
+      emit(AddNoteImageSuccess());
+      return file.path;
+    } else {
+      emit(AddNoteImageFailure());
+      return "Picked Failed";
     }
   }
 }

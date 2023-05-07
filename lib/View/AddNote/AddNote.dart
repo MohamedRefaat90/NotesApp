@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 
-import 'Widgets/NoteDescription.dart';
-import 'Widgets/NoteTitle.dart';
+import 'Widgets/NoteField.dart';
+import 'Widgets/NoteForm.dart';
 import 'Widgets/pickImageFile.dart';
 import 'Widgets/addButton.dart';
 import 'Widgets/pickVoiceFile.dart';
 
-class AddNote extends StatelessWidget {
-  dynamic selected;
+class AddNote extends StatefulWidget {
   static String id = 'AddNote';
 
-  AddNote({super.key});
+  const AddNote({super.key});
+
+  @override
+  State<AddNote> createState() => _AddNoteState();
+}
+
+class _AddNoteState extends State<AddNote> {
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +36,25 @@ class AddNote extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const NoteTitle(),
+                  NoteForm(formkey: formkey),
                   const SizedBox(height: 20),
-                  const NoteDescription(),
+                  const pickImageFile(),
                   const SizedBox(height: 20),
-                  pickImageFile(),
-                  const SizedBox(height: 20),
-                  pickVoiceFile(),
+                  const pickVoiceFile(),
                   const SizedBox(height: 50),
-                  const AddButton()
+                  AddButton(
+                    press: () {
+                      if (formkey.currentState!.validate()) {
+                        formkey.currentState!.save();
+
+                      }else{
+                        BlocProvider.of<AddNoteCubit>(context).autovalidateMode = AutovalidateMode.always;
+                        setState(() {
+                          
+                        });
+                      }
+                    },
+                  )
                 ],
               ),
             ),
@@ -48,3 +64,4 @@ class AddNote extends StatelessWidget {
     );
   }
 }
+
