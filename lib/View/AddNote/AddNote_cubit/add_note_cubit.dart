@@ -70,7 +70,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
       emit(AddNoteImageSuccess());
       return file.path;
     } else {
-      emit(AddNoteImageFailure());
+      emit(AddNoteImageFailure(errorMSG: "Picked Failed"));
       return "Picked Failed";
     }
   }
