@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:notes/Models/NoteModel.dart';
+import 'package:notes/constants.dart';
 import '../Widgets/bottomSheet.dart';
 
 part 'add_note_state.dart';
@@ -48,14 +51,17 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   Future<String?> pickAudioFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
-    if (result != null) {
-      File file = File(result.files.single.path!);
+    try {
+      emit(AddNoteVoiceLoading());
+
+      File file = File(result!.files.single.path!);
       pickVoiceSuccess = true;
+
       emit(AddNoteVoiceSuccess());
+
       return file.path;
-    } else {
-      emit(AddNoteVoiceFailure());
-      return "Pick Failed";
+    } catch (e) {
+      emit(AddNoteVoiceFailure(errorMSG: e.toString()));
     }
   }
 
@@ -72,6 +78,19 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     } else {
       emit(AddNoteImageFailure(errorMSG: "Picked Failed"));
       return "Picked Failed";
+    }
+  }
+
+  addNote(NoteModel note) async {
+    emit(AddNoteLoading());
+    try {
+      var noteBox = Hive.box<NoteModel>(kNotesBox);
+
+      await noteBox.add(note);
+
+      emit(AddNoteSuccess());
+    } catch (e) {
+      emit(AddNoteFailure(errorMSG: e.toString()));
     }
   }
 }

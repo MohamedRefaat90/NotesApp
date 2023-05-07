@@ -10,7 +10,12 @@ class AddNoteLoading extends AddNoteState {}
 
 class AddNoteSuccess extends AddNoteState {}
 
-class AddNoteFailure extends AddNoteState {}
+class AddNoteFailure extends AddNoteState {
+  final String errorMSG;
+  AddNoteFailure({
+    required this.errorMSG,
+  });
+}
 
 class AddNoteImageSuccess extends AddNoteState {}
 
@@ -25,4 +30,9 @@ class AddNoteVoiceLoading extends AddNoteState {}
 
 class AddNoteVoiceSuccess extends AddNoteState {}
 
-class AddNoteVoiceFailure extends AddNoteState {}
+class AddNoteVoiceFailure extends AddNoteState {
+  final String errorMSG;
+  AddNoteVoiceFailure({
+    required this.errorMSG,
+  });
+}
