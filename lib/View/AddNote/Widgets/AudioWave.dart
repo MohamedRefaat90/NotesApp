@@ -9,21 +9,23 @@ class AudioWave extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AudioWaveforms(
-      enableGesture: true,
-      size: const Size(300, 70),
-      recorderController: BlocProvider.of<AddNoteCubit>(context).controller,
-      waveStyle: const WaveStyle(
-        waveColor: Colors.white,
-        extendWaveform: true,
-        showMiddleLine: true,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: const Color(0xFF1E1B26),
-      ),
-      padding: const EdgeInsets.only(left: 18),
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-    );
+
+        return AudioWaveforms(
+          enableGesture: true,
+          size: const Size(300, 70),
+          recorderController: BlocProvider.of<AddNoteCubit>(context).controller,
+          waveStyle: const WaveStyle(
+            waveColor: Colors.white,
+            extendWaveform: true,
+            showMiddleLine: true,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            color: const Color(0xFF1E1B26),
+          ),
+          padding: const EdgeInsets.only(left: 18),
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+        );
+
   }
 }

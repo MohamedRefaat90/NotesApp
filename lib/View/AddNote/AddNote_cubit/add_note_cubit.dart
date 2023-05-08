@@ -25,7 +25,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   
   String title = '';
   String description = '';
-  String imgNote = '';
+  String? imgNote = '';
   String? voiceNote = '';
 
   startRecord() async {

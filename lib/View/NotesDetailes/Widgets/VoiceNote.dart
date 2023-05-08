@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:audio_waveforms/audio_waveforms.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 
 class VoiceNote extends StatefulWidget {
   const VoiceNote({
@@ -17,7 +15,7 @@ class _VoiceNoteState extends State<VoiceNote> {
   @override
   Widget build(BuildContext context) {
     bool isRecording = false;
-
+    RecorderController controller = RecorderController();
     return Column(
       children: [
         Center(
@@ -31,8 +29,7 @@ class _VoiceNoteState extends State<VoiceNote> {
               child: AudioWaveforms(
                 enableGesture: true,
                 size: Size(MediaQuery.of(context).size.width / 2, 70),
-                recorderController:
-                    BlocProvider.of<AddNoteCubit>(context).controller,
+                recorderController: controller,
                 waveStyle: const WaveStyle(
                   waveColor: Colors.white,
                   extendWaveform: true,
@@ -53,7 +50,7 @@ class _VoiceNoteState extends State<VoiceNote> {
             tooltip: 'Start recording',
             onPressed: () async {
               if (!isRecording) {
-                BlocProvider.of<AddNoteCubit>(context).startRecord();
+                // BlocProvider.of<AddNoteCubit>(context).startRecord();
               } else {
                 isRecording = false;
                 // final path = await controller.stop();

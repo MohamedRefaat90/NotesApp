@@ -20,6 +20,8 @@ class NoteFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: minLine,
+      maxLines: maxLine,
       autovalidateMode: BlocProvider.of<AddNoteCubit>(context).autovalidateMode,
       validator: validator,
       onSaved: onSaved,

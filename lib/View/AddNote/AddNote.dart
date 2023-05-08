@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/Models/NoteModel.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 
-import 'Widgets/NoteField.dart';
 import 'Widgets/NoteForm.dart';
 import 'Widgets/pickImageFile.dart';
 import 'Widgets/addButton.dart';
@@ -23,15 +22,11 @@ class _AddNoteState extends State<AddNote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         title: const Text('Add New Note'),
       ),
-      body: BlocConsumer<AddNoteCubit, AddNoteState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return SingleChildScrollView(
+      body:  SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -48,26 +43,27 @@ class _AddNoteState extends State<AddNote> {
                       if (formkey.currentState!.validate()) {
                         formkey.currentState!.save();
                         NoteModel note = NoteModel(
-                          title: BlocProvider.of<AddNoteCubit>(context).title,
-                          note: BlocProvider.of<AddNoteCubit>(context).description,
-                          image: BlocProvider.of<AddNoteCubit>(context).imgNote,
-                          record: BlocProvider.of<AddNoteCubit>(context).voiceNote);
-                          BlocProvider.of<AddNoteCubit>(context).addNote(note);
-                      }else{
-                        BlocProvider.of<AddNoteCubit>(context).autovalidateMode = AutovalidateMode.always;
-                        setState(() {
-                          
-                        });
+                            title:
+                                BlocProvider.of<AddNoteCubit>(context).title,
+                            note: BlocProvider.of<AddNoteCubit>(context)
+                                .description,
+                            image: BlocProvider.of<AddNoteCubit>(context)
+                                .imgNote,
+                            record: BlocProvider.of<AddNoteCubit>(context)
+                                .voiceNote);
+                        BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                      } else {
+                        BlocProvider.of<AddNoteCubit>(context)
+                            .autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
                       }
                     },
                   )
                 ],
               ),
             ),
-          );
-        },
-      ),
+          )
+
     );
   }
 }
-

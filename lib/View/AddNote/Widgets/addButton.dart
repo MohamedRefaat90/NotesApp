@@ -19,7 +19,7 @@ class AddButton extends StatelessWidget {
           if (state is AddNoteSuccess) {
             Navigator.of(context).pop();
           } else if (state is AddNoteFailure) {
-            print("Fail");
+            debugPrint('Fail');
           }
         },
         builder: (context, state) {
@@ -30,7 +30,9 @@ class AddButton extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: ModalProgressHUD(
                 inAsyncCall: state is AddNoteLoading ? true : false,
-                child: const Text('Add Note')),
+                child: state is AddNoteLoading
+                    ? const CircularProgressIndicator.adaptive()
+                    : const Text('Add Note')),
           );
         },
       ),
