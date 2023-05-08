@@ -31,7 +31,7 @@ class pickVoiceFile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Pick Voice"),
-                      BlocListener<AddNoteCubit, AddNoteState>(
+                      BlocConsumer<AddNoteCubit, AddNoteState>(
                         listener: (context, state) {
                           if (state is AddNoteVoiceSuccess) {
                             BlocProvider.of<AddNoteCubit>(context)
@@ -41,7 +41,7 @@ class pickVoiceFile extends StatelessWidget {
                                 .pickVoiceSuccess = false;
                           }
                         },
-                        child: CircleAvatar(
+                        builder: (context, state) => CircleAvatar(
                             backgroundColor:
                                 BlocProvider.of<AddNoteCubit>(context)
                                         .pickVoiceSuccess

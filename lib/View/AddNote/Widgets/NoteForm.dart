@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 
 import 'NoteField.dart';
 
@@ -30,7 +32,7 @@ class _NoteFormState extends State<NoteForm> {
                 }
               },
               onSaved: (value) {
-                noteTitle = value;
+                BlocProvider.of<AddNoteCubit>(context).title = value!;
               },
             ),
             const SizedBox(height: 20),
@@ -39,7 +41,7 @@ class _NoteFormState extends State<NoteForm> {
               minLine: 3,
               maxLine: 5,
               onSaved: (value) {
-                noteDescription = value;
+                BlocProvider.of<AddNoteCubit>(context).description = value!;
               },
             ),
           ],

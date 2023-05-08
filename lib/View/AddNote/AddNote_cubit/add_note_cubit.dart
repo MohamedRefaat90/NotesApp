@@ -22,6 +22,12 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   bool pickVoiceSuccess = false;
   AutovalidateMode? autovalidateMode = AutovalidateMode.disabled;
 
+  
+  String title = '';
+  String description = '';
+  String imgNote = '';
+  String? voiceNote = '';
+
   startRecord() async {
     controller
       ..androidEncoder = AndroidEncoder.aac
@@ -38,9 +44,9 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   }
 
   Future<String?> stopRecode() async {
-    final path = await controller.stop();
+    voiceNote = await controller.stop();
     emit(AddNoteVoiceSuccess());
-    return path;
+    return voiceNote;
   }
 
   void openBottomSheet(BuildContext context) {
@@ -56,12 +62,13 @@ class AddNoteCubit extends Cubit<AddNoteState> {
 
       File file = File(result!.files.single.path!);
       pickVoiceSuccess = true;
-
+      voiceNote = file.path;
       emit(AddNoteVoiceSuccess());
 
-      return file.path;
+      return voiceNote;
     } catch (e) {
       emit(AddNoteVoiceFailure(errorMSG: e.toString()));
+      return null;
     }
   }
 
@@ -73,8 +80,9 @@ class AddNoteCubit extends Cubit<AddNoteState> {
 
     if (image != null) {
       file = File(image.path);
+      imgNote = file.path;
       emit(AddNoteImageSuccess());
-      return file.path;
+      return imgNote;
     } else {
       emit(AddNoteImageFailure(errorMSG: "Picked Failed"));
       return "Picked Failed";

@@ -30,7 +30,7 @@ class pickImageFile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Pick Image"),
-                      BlocListener<AddNoteCubit, AddNoteState>(
+                      BlocConsumer<AddNoteCubit, AddNoteState>(
                         listener: (context, state) {
                           if (state is AddNoteImageSuccess) {
                             BlocProvider.of<AddNoteCubit>(context)
@@ -40,7 +40,7 @@ class pickImageFile extends StatelessWidget {
                                 .pickImageSuccess = false;
                           }
                         },
-                        child: CircleAvatar(
+                        builder:(context, state) =>  CircleAvatar(
                             backgroundColor:
                                 BlocProvider.of<AddNoteCubit>(context)
                                         .pickImageSuccess
