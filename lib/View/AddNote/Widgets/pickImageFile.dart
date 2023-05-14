@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter/material.dart';
 
-
 class pickImageFile extends StatelessWidget {
   const pickImageFile({super.key});
   @override
@@ -40,7 +39,7 @@ class pickImageFile extends StatelessWidget {
                                 .pickImageSuccess = false;
                           }
                         },
-                        builder:(context, state) =>  CircleAvatar(
+                        builder: (context, state) => CircleAvatar(
                             backgroundColor:
                                 BlocProvider.of<AddNoteCubit>(context)
                                         .pickImageSuccess

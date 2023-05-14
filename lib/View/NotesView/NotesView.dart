@@ -4,8 +4,7 @@ import 'package:notes/Models/NoteModel.dart';
 
 import '../AddNote/AddNote.dart';
 import 'NoteView_cubit/notes_view_cubit.dart';
-import 'Widgets/Note.dart';
-import 'Widgets/SearchField.dart';
+import 'Widgets/NotleList.dart';
 
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
@@ -25,38 +24,55 @@ class _NotesViewState extends State<NotesView> {
 
   @override
   Widget build(BuildContext context) {
-    List<NoteModel> notesList =
-        BlocProvider.of<NotesViewCubit>(context).notes ?? [];
+    return BlocBuilder<NotesViewCubit, NotesViewState>(
+      builder: (context, state) {
+        List<NoteModel> notesList =
+            BlocProvider.of<NotesViewCubit>(context).notes ?? [];
 
-    return BlocProvider(
-      create: (context) => NotesViewCubit(),
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(top: 24),
-          child: Column(
-            children: [
-              const SearchField(),
-              const SizedBox(height: 30),
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10),
-                  itemCount: notesList.length,
-                  itemBuilder: (context, index) => Note(note: notesList[index]),
-                ),
-              )
+        Brightness themeMode =
+            BlocProvider.of<NotesViewCubit>(context).themeMode;
+
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              'Notes',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            elevation: 0,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    BlocProvider.of<NotesViewCubit>(context).changeTheme();
+                  },
+                  icon: Icon(
+                    themeMode == Brightness.dark
+                        ? Icons.sunny
+                        : Icons.nightlight_sharp,
+                    size: 30,
+                    color: themeMode == Brightness.dark
+                        ? Colors.white
+                        : Colors.black87,
+                  ))
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed(AddNote.id);
-          },
-          child: const Icon(Icons.add),
-        ),
-      ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                // const SearchField(),
+                const SizedBox(height: 10),
+                NotesList(notesList: notesList)
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddNote.id);
+            },
+            child: const Icon(Icons.add),
+          ),
+        );
+      },
     );
   }
 }

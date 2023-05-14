@@ -22,12 +22,11 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   bool pickVoiceSuccess = false;
   AutovalidateMode? autovalidateMode = AutovalidateMode.disabled;
 
-  
   String title = '';
   String description = '';
   String? imgNote = '';
   String? voiceNote = '';
-
+  int selectedColor = 0;
   startRecord() async {
     controller
       ..androidEncoder = AndroidEncoder.aac
@@ -39,7 +38,6 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     if (hasPermission) {
       emit(AddNoteVoiceLoading());
       await controller.record();
-      emit(AddNoteVoiceSuccess());
     }
   }
 
@@ -100,5 +98,12 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     } catch (e) {
       emit(AddNoteFailure(errorMSG: e.toString()));
     }
+  }
+
+  resetPickers() {
+    imgNote = '';
+    voiceNote = '';
+    pickImageSuccess = false;
+    pickVoiceSuccess = false;
   }
 }

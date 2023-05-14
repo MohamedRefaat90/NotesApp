@@ -3,11 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../AddNote_cubit/add_note_cubit.dart';
 
-class RecordeButton extends StatelessWidget {
-  RecordeButton({
+class RecordeButton extends StatefulWidget {
+  const RecordeButton({
     super.key,
   });
 
+  @override
+  State<RecordeButton> createState() => _RecordeButtonState();
+}
+
+class _RecordeButtonState extends State<RecordeButton> {
   @override
   Widget build(BuildContext context) {
     bool isRecording = false;
@@ -33,10 +38,11 @@ class RecordeButton extends StatelessWidget {
                       icon: Icon(isRecording ? Icons.pause : Icons.mic),
                       tooltip: 'Start recording',
                       onPressed: () async {
-                        if (!isRecording) {
+                        if (isRecording == false) {
                           BlocProvider.of<AddNoteCubit>(context).startRecord();
                         } else {
                           BlocProvider.of<AddNoteCubit>(context).stopRecode();
+                          Navigator.pop(context);
                         }
                       }),
                 ),
