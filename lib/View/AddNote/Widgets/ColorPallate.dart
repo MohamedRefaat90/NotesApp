@@ -32,22 +32,17 @@ class _ColorPallateState extends State<ColorPallate> {
               BlocProvider.of<AddNoteCubit>(context).selectedColor = index;
               setState(() {});
             },
-            child: selectedColor == index
-                ? Container(
+            child: 
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 100),
                     width: 45,
                     height: 45,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Color(noteColors[index]),
-                        border: Border.all(color: Colors.white, width: 4)),
+                        border: selectedColor == index? Border.all(color: Colors.white, width: 4) : const Border()),
                   )
-                : Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(noteColors[index])),
-                  ),
+
           ),
         ),
       ),
