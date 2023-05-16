@@ -5,6 +5,7 @@ import 'package:notes/Models/NoteModel.dart';
 import '../AddNote/AddNote.dart';
 import 'NoteView_cubit/notes_view_cubit.dart';
 import 'Widgets/NotleList.dart';
+import 'Widgets/appBar.dart';
 
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
@@ -33,36 +34,30 @@ class _NotesViewState extends State<NotesView> {
             BlocProvider.of<NotesViewCubit>(context).themeMode;
 
         return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Notes',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-            elevation: 0,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    BlocProvider.of<NotesViewCubit>(context).changeTheme();
-                  },
-                  icon: Icon(
-                    themeMode == Brightness.dark
-                        ? Icons.sunny
-                        : Icons.nightlight_sharp,
-                    size: 30,
-                    color: themeMode == Brightness.dark
-                        ? Colors.white
-                        : Colors.black87,
-                  ))
-            ],
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                // const SearchField(),
-                const SizedBox(height: 10),
-                NotesList(notesList: notesList)
-              ],
+          appBar: appBar(themeMode, context),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: notesList.isEmpty
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Text(
+                          '🤷🏻‍♂️',
+                          style: TextStyle(fontSize: 80),
+                        ),
+                        Text('No Notes has been Added Yet',
+                            style: TextStyle(fontSize: 20)),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        // const SearchField(),
+                        const SizedBox(height: 10),
+                        NotesList(notesList: notesList)
+                      ],
+                    ),
             ),
           ),
           floatingActionButton: FloatingActionButton(
@@ -76,3 +71,4 @@ class _NotesViewState extends State<NotesView> {
     );
   }
 }
+

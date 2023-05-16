@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:notes/View/EditNote/Widgets/NoteField.dart';
+import 'package:notes/View/NotesView/NoteView_cubit/notes_view_cubit.dart';
 
 import '../../Models/NoteModel.dart';
+import '../../constants.dart';
+import '../AddNote/Widgets/ColorPallate.dart';
 import '../AddNote/Widgets/pickImageFile.dart';
 import '../AddNote/Widgets/pickVoiceFile.dart';
 import 'Widgets/editButton.dart';
@@ -50,14 +53,23 @@ class _EditNoteState extends State<EditNote> {
                 const pickImageFile(),
                 const SizedBox(height: 20),
                 const pickVoiceFile(),
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
+                const ColorPallate(),
+                const SizedBox(height: 20),
                 EditButton(
                   press: () {
                     note.title = title ?? note.title;
                     note.note = description ?? note.note;
-                    note.image = BlocProvider.of<AddNoteCubit>(context).imgNote ?? note.image;
-                    note.record = BlocProvider.of<AddNoteCubit>(context).voiceNote ?? note.record;
+                    note.image =
+                        BlocProvider.of<AddNoteCubit>(context).imgNote == ''
+                            ? note.image
+                            : BlocProvider.of<AddNoteCubit>(context).imgNote;
+                    note.record =
+                        BlocProvider.of<AddNoteCubit>(context).voiceNote ??
+                            note.record;
+                    note.color = noteColors[BlocProvider.of<AddNoteCubit>(context).selectedColor];
                     note.save();
+                    BlocProvider.of<NotesViewCubit>(context).fetchAllNotes();
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
                   },

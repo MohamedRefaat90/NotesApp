@@ -18,7 +18,7 @@ class Note extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(NotesDetailes.id, arguments: note);
       },
-      onLongPress: () {
+      onDoubleTap: () {
         CoolAlert.show(
           context: context,
           type: CoolAlertType.warning,
@@ -38,23 +38,26 @@ class Note extends StatelessWidget {
         decoration: BoxDecoration(
             color: Color(note.color!),
             borderRadius: BorderRadius.circular(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              note.title,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              '${note.note}',
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const Spacer(),
-            Align(alignment: Alignment.bottomRight,child: Text(note.date))
-          ],
+        child: DefaultTextStyle(
+          style: const TextStyle(color: Colors.white),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                note.title,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                '${note.note}',
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const Spacer(),
+              Align(alignment: Alignment.bottomRight,child: Text(note.date))
+            ],
+          ),
         ),
       ),
     );

@@ -34,7 +34,7 @@ class _ColorPallateState extends State<ColorPallate> {
             },
             child: 
                 AnimatedContainer(
-                  duration: const Duration(milliseconds: 100),
+                  duration: const Duration(milliseconds: 150),
                     width: 45,
                     height: 45,
                     decoration: BoxDecoration(
