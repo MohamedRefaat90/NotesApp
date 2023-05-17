@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../NoteView_cubit/notes_view_cubit.dart';
 
 PreferredSizeWidget appBar(themeMode, context) {
   return AppBar(
-    title: const Text(
-      'Notes',
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29),
+    title: Text(
+      AppLocalizations.of(context)!.notes,
+      style: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontFamily: 'Dancing Script',
+          fontSize: 40),
     ),
     elevation: 0,
     actions: [

@@ -2,7 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'bottomSheet.dart';
 
 class pickVoiceFile extends StatelessWidget {
@@ -14,9 +14,9 @@ class pickVoiceFile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Pick Voice For Note',
-              style: TextStyle(fontSize: 20),
+            Text(
+              AppLocalizations.of(context)!.note_voice_title,
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 10),
             Container(
@@ -30,7 +30,7 @@ class pickVoiceFile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Pick Voice"),
+                      Text(AppLocalizations.of(context)!.pick_voice_hint),
                       BlocConsumer<AddNoteCubit, AddNoteState>(
                         listener: (context, state) {
                           if (state is AddNoteVoiceSuccess) {
@@ -67,9 +67,9 @@ class pickVoiceFile extends StatelessWidget {
                 items: [
                   DropdownMenuItem(
                     value: 'Voice Note',
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text('Pick Voice Note'),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(AppLocalizations.of(context)!.pick_voice),
                     ),
                     onTap: () {
                       BlocProvider.of<AddNoteCubit>(context).pickAudioFile();
@@ -77,9 +77,10 @@ class pickVoiceFile extends StatelessWidget {
                   ),
                   DropdownMenuItem(
                       value: 'Recorde',
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Recorde Voice Note'),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child:
+                            Text(AppLocalizations.of(context)!.recorde_voice),
                       ),
                       onTap: () async {
                         BlocProvider.of<AddNoteCubit>(context)

@@ -1,36 +1,39 @@
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../NotesDetailes_cubit/notes_detailes_cubit.dart';
-import 'VoiceNote.dart';
-
-class PlayPauseBTN extends StatelessWidget {
+class PlayPauseBTN extends StatefulWidget {
   const PlayPauseBTN({
-    super.key, required this.noteVoice,
-
+    super.key,
+    required this.noteVoice,
+    this.controller,
   });
 
-final String noteVoice;
+  final String noteVoice;
+  final PlayerController? controller;
+
+  @override
+  State<PlayPauseBTN> createState() => _PlayPauseBTNState();
+}
+
+class _PlayPauseBTNState extends State<PlayPauseBTN> {
+  bool isPlayed = true;
 
   @override
   Widget build(BuildContext context) {
-    bool isPlayed = false;
-    return BlocConsumer<NotesDetailesCubit, NotesDetailesState>(
-      listener: (context, state) {
-        if (state is NotesDetailesLoading) {
-          isPlayed = true;
-        } else if (state is NotesDetailesSuccess) {
-          isPlayed = false;
-        }
-      },
-      builder: (context, state) {
-        return IconButton(
-            icon: Icon(isPlayed ? Icons.pause : Icons.play_arrow, size: 40),
-            tooltip: 'Play',
-            onPressed: () async {
-        
-            });
-      },
-    );
+    return IconButton(
+        icon: Icon(!isPlayed ? Icons.pause : Icons.play_arrow, size: 40),
+        tooltip: 'Play',
+        onPressed: () async {
+          if (!isPlayed) {
+            await widget.controller!.pausePlayer();
+            isPlayed = true;
+            setState(() {});
+          } else {
+            await widget.controller!.startPlayer(finishMode: FinishMode.pause, forceRefresh: true);
+
+            isPlayed = false;
+            setState(() {});
+          }
+        });
   }
 }

@@ -1,0 +1,30 @@
+{
+    "language": "Arabic",
+    "notes": "ملاحظات",
+    "notes_empty": "لم يتم اضافة اي ملاحظات بعد",
+    
+    "add_note_title" : "اضافة ملاحظة جديدة",
+    "title": "عنوان الملاحظة",
+    "description": "محتوي الملاحظة",
+
+    "note_Image_title" : "اختر صورة للملاحظة",
+    "pick_Image_hint" : "اختر صورة",
+    "capture_image": "التقط صورة من الكاميرا",
+    "pick_image": "احتر صورة من المعرض",
+
+    "note_voice_title" : "اضافة ملاحظة صوتية",
+    "pick_voice_hint" : "اختر ملاحظة صوتية",
+    "recorde_voice": "سجل الملاحظة الصوتية",
+    "pick_voice": "اختر الملاحظة الصوتية من الملفات",
+    "start_record": "بدء التسجيل",
+    "stop_record": "انتهاء التسجيل",
+
+    "add_note_btn" : "أضافة ملاحظة",
+
+    "edit_note" : "تعديل الملاحظة",
+
+    "warning_title" : "تحذير",
+    "warning_msg" : "هل انت متأكد من انك تريد حذف هذة الملاحظة",
+    "yes" : "نعم",
+    "no" : "لا"
+}

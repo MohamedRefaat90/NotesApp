@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton({super.key, required this.press});
@@ -9,16 +10,16 @@ class EditButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: SizedBox(
-      width: 150,
-      height: 50,
-      child:  MaterialButton(
-                onPressed: press,
-                color: Colors.green.withOpacity(0.7),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Text('Edit Note'),
-              )),
+      child: SizedBox(
+          width: 150,
+          height: 50,
+          child: MaterialButton(
+            onPressed: press,
+            color: Colors.green.withOpacity(0.7),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Text(AppLocalizations.of(context)!.edit_note),
+          )),
     );
   }
 }

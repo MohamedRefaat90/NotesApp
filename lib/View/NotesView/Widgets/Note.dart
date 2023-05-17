@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/Models/NoteModel.dart';
 import 'package:notes/View/NotesDetailes/NotesDetailes.dart';
 import 'package:notes/View/NotesView/NoteView_cubit/notes_view_cubit.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Note extends StatelessWidget {
   const Note({
     super.key,
@@ -23,10 +23,11 @@ class Note extends StatelessWidget {
           context: context,
           type: CoolAlertType.warning,
           showCancelBtn: true,
-          text: "Your Sure Wanna to Delete this Note",
-          confirmBtnText: "Yes",
-          confirmBtnColor: Colors.green,
-          cancelBtnText: "No",
+          title: AppLocalizations.of(context)!.warning_title,
+          text: AppLocalizations.of(context)!.warning_msg,
+          confirmBtnText: AppLocalizations.of(context)!.yes,
+          confirmBtnColor: Colors.red,
+          cancelBtnText: AppLocalizations.of(context)!.no,
           onConfirmBtnTap: () {
             note.delete();
             BlocProvider.of<NotesViewCubit>(context).fetchAllNotes();
@@ -48,7 +49,7 @@ class Note extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
               Text(
                 '${note.note}',
                 maxLines: 4,

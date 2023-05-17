@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:audio_waveforms/audio_waveforms.dart';
 
 import 'PlayPauseBTN.dart';
-import 'StopBTN.dart';
 
-class VoiceNote extends StatefulWidget {
+class VoiceNote extends StatelessWidget {
   const VoiceNote({
     super.key,
     this.noteVoice,
+    this.controller,
+    required this.waveColor,
   });
   final String? noteVoice;
-  @override
-  State<VoiceNote> createState() => _VoiceNoteState();
-}
-
-class _VoiceNoteState extends State<VoiceNote> {
-  PlayerController controller = PlayerController();
-
+  final PlayerController? controller;
+  final int waveColor;
   @override
   Widget build(BuildContext context) {
-    return widget.noteVoice!.isEmpty
+    return noteVoice!.isEmpty
         ? Container()
         : Column(
             children: [
@@ -28,20 +24,20 @@ class _VoiceNoteState extends State<VoiceNote> {
                 height: 100,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                    color: Colors.transparent,
+                    color: Colors.black87,
                     borderRadius: BorderRadius.circular(16)),
                 child: Center(
                   child: AudioFileWaveforms(
                     size: Size(MediaQuery.of(context).size.width, 150.0),
-                    playerController: controller,
+                    playerController: controller!,
                     enableSeekGesture: true,
                     waveformType: WaveformType.long,
                     waveformData: const [],
-                    playerWaveStyle: const PlayerWaveStyle(
+                    playerWaveStyle: PlayerWaveStyle(
                       waveThickness: 5,
                       showSeekLine: false,
                       fixedWaveColor: Colors.white,
-                      liveWaveColor: Color.fromARGB(255, 230, 135, 11),
+                      liveWaveColor: Color(waveColor),
                       spacing: 6,
                     ),
                   ),
@@ -50,9 +46,7 @@ class _VoiceNoteState extends State<VoiceNote> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
-                  PlayPauseBTN(noteVoice: widget.noteVoice!),
-                  const StopBTN(),
+                  PlayPauseBTN(controller: controller, noteVoice: noteVoice!),
                 ],
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/Models/NoteModel.dart';
@@ -16,9 +17,39 @@ class NotesDetailes extends StatefulWidget {
 }
 
 class _NotesDetailesState extends State<NotesDetailes> {
+  PlayerController? player;
+  @override
+  void initState() {
+    player = PlayerController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    player!.dispose();
+    player = null;
+    print("=======================================");
+    print("Disposed");
+    print("=======================================");
+    super.dispose();
+  }
+
+
+x(VoiceNote)async{
+   await   player!.preparePlayer(
+      path: VoiceNote,
+      shouldExtractWaveform: true,
+      noOfSamples: 100,
+      volume: 1.0,
+    );
+}
+
   @override
   Widget build(BuildContext context) {
     NoteModel note = ModalRoute.of(context)!.settings.arguments as NoteModel;
+    x(note.record);
+    // BlocProvider.of<NotesDetailesCubit>(context).initPlayer(note.record!);
     return BlocProvider(
       create: (context) => NotesDetailesCubit(),
       child: Scaffold(
@@ -53,7 +84,7 @@ class _NotesDetailesState extends State<NotesDetailes> {
                 const SizedBox(height: 30),
                 ImageNote(img: note.image),
                 const SizedBox(height: 30),
-                VoiceNote(noteVoice: note.record)
+                VoiceNote(controller: player, noteVoice: note.record, waveColor : note.color!)
               ],
             ),
           ),

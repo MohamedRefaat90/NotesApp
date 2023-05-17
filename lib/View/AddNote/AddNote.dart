@@ -10,7 +10,7 @@ import 'Widgets/NoteForm.dart';
 import 'Widgets/pickImageFile.dart';
 import 'Widgets/addButton.dart';
 import 'Widgets/pickVoiceFile.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AddNote extends StatefulWidget {
   static String id = 'AddNote';
 
@@ -26,7 +26,7 @@ class _AddNoteState extends State<AddNote> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Add New Note'),
+          title: Text(AppLocalizations.of(context)!.add_note_title),
         ),
         body: SingleChildScrollView(
           child: Padding(

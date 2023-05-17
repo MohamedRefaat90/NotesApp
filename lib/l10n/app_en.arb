@@ -1,0 +1,32 @@
+{
+    "language": "English",
+    "@language" :{
+        "descriptopn": "the Current Language"
+    },
+    "notes" : "Notes",
+    "notes_empty": "No Notes has been Added Yet",
+    "add_note_title" : "Add New Note",
+    "title": "Title",
+    "description": "Note Description",
+
+    "note_Image_title" : "Pick Image For Note",
+    "pick_Image_hint" : "Pick Image",
+    "capture_image": "Capture Image",
+    "pick_image": "Pick From Gallery",
+
+    "note_voice_title" : "Pick Voice For Note",
+    "pick_voice_hint" : "Pick Voice",
+    "recorde_voice": "Recorde Voice Note",
+    "pick_voice": "Pick Voice Note",
+    "start_record": "Start Recording",
+    "stop_record": "Stop Recording",
+
+    "add_note_btn" : "Add Note",
+
+    "edit_note" : "Edit Note",
+
+    "warning_title" : "Warning",
+    "warning_msg" : "Are You Sure Wanna to Delete This Note",
+    "yes" : "Yes",
+    "no" : "No"
+}

@@ -27,7 +27,5 @@ class NotesViewCubit extends Cubit<NotesViewState> {
       themeMode = Brightness.dark;
       emit(NotesViewDarkTheme());
     }
-
-    print(themeMode);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../NotesView/NoteView_cubit/notes_view_cubit.dart';
 
 class AddButton extends StatelessWidget {
@@ -30,7 +30,7 @@ class AddButton extends StatelessWidget {
                 color: Colors.green.withOpacity(0.7),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                child: const Text('Add Note'),
+                child:  Text(AppLocalizations.of(context)!.add_note_btn),
               )),
     ));
   }

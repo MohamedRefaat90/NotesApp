@@ -10,7 +10,7 @@ import '../AddNote/Widgets/ColorPallate.dart';
 import '../AddNote/Widgets/pickImageFile.dart';
 import '../AddNote/Widgets/pickVoiceFile.dart';
 import 'Widgets/editButton.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class EditNote extends StatefulWidget {
   const EditNote({Key? key}) : super(key: key);
   static String id = "EditNote";
@@ -26,7 +26,7 @@ class _EditNoteState extends State<EditNote> {
     String? title, description;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Edit Note'),
+          title:  Text(AppLocalizations.of(context)!.edit_note),
         ),
         body: SingleChildScrollView(
           child: Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'NoteField.dart';
 
 class NoteForm extends StatefulWidget {
@@ -23,7 +23,7 @@ class _NoteFormState extends State<NoteForm> {
         child: Column(
           children: [
             NoteFiled(
-              title: "Title",
+              title: AppLocalizations.of(context)!.title,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
                   return "Filed Must not be Empty";
@@ -37,7 +37,7 @@ class _NoteFormState extends State<NoteForm> {
             ),
             const SizedBox(height: 20),
             NoteFiled(
-              title: "Note Description",
+              title: AppLocalizations.of(context)!.description,
               minLine: 3,
               maxLine: 5,
               onSaved: (value) {

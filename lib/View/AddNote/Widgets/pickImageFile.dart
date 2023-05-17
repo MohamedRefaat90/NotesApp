@@ -2,6 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class pickImageFile extends StatelessWidget {
   const pickImageFile({super.key});
@@ -12,9 +13,9 @@ class pickImageFile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Pick Image For Note',
-              style: TextStyle(fontSize: 20),
+            Text(
+              AppLocalizations.of(context)!.note_Image_title,
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 10),
             Container(
@@ -28,7 +29,7 @@ class pickImageFile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Pick Image"),
+                      Text(AppLocalizations.of(context)!.pick_Image_hint),
                       BlocConsumer<AddNoteCubit, AddNoteState>(
                         listener: (context, state) {
                           if (state is AddNoteImageSuccess) {
@@ -64,10 +65,9 @@ class pickImageFile extends StatelessWidget {
                 onChanged: (value) {},
                 items: [
                   DropdownMenuItem(
-                    value: 'Voice Note',
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text("Pick From Gallery"),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(AppLocalizations.of(context)!.pick_image),
                     ),
                     onTap: () {
                       BlocProvider.of<AddNoteCubit>(context)
@@ -76,9 +76,10 @@ class pickImageFile extends StatelessWidget {
                   ),
                   DropdownMenuItem(
                       value: 'Recorde',
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text("Capture Image "),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child:
+                            Text(AppLocalizations.of(context)!.capture_image),
                       ),
                       onTap: () async {
                         BlocProvider.of<AddNoteCubit>(context)

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/Models/NoteModel.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../AddNote/AddNote.dart';
 import 'NoteView_cubit/notes_view_cubit.dart';
 import 'Widgets/NotleList.dart';
@@ -42,18 +42,17 @@ class _NotesViewState extends State<NotesView> {
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           '🤷🏻‍♂️',
                           style: TextStyle(fontSize: 80),
                         ),
-                        Text('No Notes has been Added Yet',
-                            style: TextStyle(fontSize: 20)),
+                        Text(AppLocalizations.of(context)!.notes_empty,
+                            style: const TextStyle(fontSize: 20)),
                       ],
                     )
                   : Column(
                       children: [
-                        // const SearchField(),
                         const SizedBox(height: 10),
                         NotesList(notesList: notesList)
                       ],
@@ -71,4 +70,3 @@ class _NotesViewState extends State<NotesView> {
     );
   }
 }
-

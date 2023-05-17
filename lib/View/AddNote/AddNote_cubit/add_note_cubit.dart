@@ -53,7 +53,8 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   }
 
   Future<String?> pickAudioFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom, allowedExtensions: ['wav', 'aac', 'mp3', 'ogg' 'm4a', 'flac']);
 
     try {
       emit(AddNoteVoiceLoading());
