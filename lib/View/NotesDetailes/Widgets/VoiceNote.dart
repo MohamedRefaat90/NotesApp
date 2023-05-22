@@ -17,18 +17,16 @@ class VoiceNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return noteVoice!.isEmpty
         ? Container()
-        : Column(
-            children: [
-              Container(
-                width: 350,
-                height: 100,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Center(
+        : Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+                color: Colors.black87, borderRadius: BorderRadius.circular(16)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
                   child: AudioFileWaveforms(
-                    size: Size(MediaQuery.of(context).size.width, 150.0),
+                    size: Size(MediaQuery.of(context).size.width, 60),
                     playerController: controller!,
                     enableSeekGesture: true,
                     waveformType: WaveformType.long,
@@ -38,18 +36,13 @@ class VoiceNote extends StatelessWidget {
                       showSeekLine: false,
                       fixedWaveColor: Colors.white,
                       liveWaveColor: Color(waveColor),
-                      spacing: 6,
+                      spacing: 7,
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  PlayPauseBTN(controller: controller, noteVoice: noteVoice!),
-                ],
-              ),
-            ],
+                PlayPauseBTN(controller: controller, noteVoice: noteVoice!)
+              ],
+            ),
           );
   }
 }

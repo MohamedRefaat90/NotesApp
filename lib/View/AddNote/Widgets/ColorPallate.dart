@@ -23,7 +23,7 @@ class _ColorPallateState extends State<ColorPallate> {
       child: SizedBox(
         height: 50,
         child: ListView.separated(
-          itemCount: noteColors.length,
+          itemCount: kNoteColors.length,
           scrollDirection: Axis.horizontal,
           separatorBuilder: (context, index) => const SizedBox(width: 10),
           itemBuilder: (context, index) => GestureDetector(
@@ -39,7 +39,7 @@ class _ColorPallateState extends State<ColorPallate> {
                     height: 45,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(noteColors[index]),
+                        color: Color(kNoteColors[index]),
                         border: selectedColor == index? Border.all(color: Colors.white, width: 4) : const Border()),
                   )
 

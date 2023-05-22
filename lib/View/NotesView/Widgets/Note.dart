@@ -28,6 +28,7 @@ class Note extends StatelessWidget {
           confirmBtnText: AppLocalizations.of(context)!.yes,
           confirmBtnColor: Colors.red,
           cancelBtnText: AppLocalizations.of(context)!.no,
+          textTextStyle: Theme.of(context).textTheme.bodyMedium,
           onConfirmBtnTap: () {
             note.delete();
             BlocProvider.of<NotesViewCubit>(context).fetchAllNotes();

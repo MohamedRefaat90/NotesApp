@@ -19,13 +19,16 @@ class NoteModel extends HiveObject {
   int? color;
   @HiveField(5)
   String date;
+  @HiveField(6)
+  List<String>? docs;
 
   NoteModel({
     required this.title,
-    required this.note,
-    required this.image,
-    required this.record,
+    this.note,
+    this.image,
+    this.record,
     this.color,
     required this.date,
+    this.docs,
   });
 }

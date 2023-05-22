@@ -7,10 +7,12 @@ import 'package:notes/constants.dart';
 
 import 'Widgets/ColorPallate.dart';
 import 'Widgets/NoteForm.dart';
+import 'Widgets/pickDocument.dart';
 import 'Widgets/pickImageFile.dart';
 import 'Widgets/addButton.dart';
 import 'Widgets/pickVoiceFile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class AddNote extends StatefulWidget {
   static String id = 'AddNote';
 
@@ -40,6 +42,8 @@ class _AddNoteState extends State<AddNote> {
                 const SizedBox(height: 20),
                 const pickVoiceFile(),
                 const SizedBox(height: 20),
+                pickDocument(),
+                const SizedBox(height: 20),
                 const ColorPallate(),
                 const SizedBox(height: 20),
                 AddButton(
@@ -48,7 +52,7 @@ class _AddNoteState extends State<AddNote> {
                       formkey.currentState!.save();
                       int selectedColor =
                           BlocProvider.of<AddNoteCubit>(context).selectedColor;
-                      
+
                       NoteModel note = NoteModel(
                           title: BlocProvider.of<AddNoteCubit>(context).title,
                           note: BlocProvider.of<AddNoteCubit>(context)
@@ -57,10 +61,11 @@ class _AddNoteState extends State<AddNote> {
                           record:
                               BlocProvider.of<AddNoteCubit>(context).voiceNote,
                           date: DateFormat.yMd().format(DateTime.now()),
-                          color: noteColors[selectedColor]);
+                          color: kNoteColors[selectedColor],
+                          docs: BlocProvider.of<AddNoteCubit>(context).docs);
 
-                          
                       BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                      BlocProvider.of<AddNoteCubit>(context).resetPickers();
                     } else {
                       BlocProvider.of<AddNoteCubit>(context).autovalidateMode =
                           AutovalidateMode.always;

@@ -8,6 +8,7 @@
     "add_note_title" : "Add New Note",
     "title": "Title",
     "description": "Note Description",
+    "field_empty" : "Filed Must not be Empty",
 
     "note_Image_title" : "Pick Image For Note",
     "pick_Image_hint" : "Pick Image",
@@ -28,5 +29,9 @@
     "warning_title" : "Warning",
     "warning_msg" : "Are You Sure Wanna to Delete This Note",
     "yes" : "Yes",
-    "no" : "No"
+    "no" : "No",
+
+    "pick_doc" : "Pick Document",
+    "add_doc" : "Add Document",
+    "docs": "Documents"
 }

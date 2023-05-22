@@ -1,16 +1,18 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../NoteView_cubit/notes_view_cubit.dart';
-
+Locale en = Locale('en'); 
 PreferredSizeWidget appBar(themeMode, context) {
   return AppBar(
     title: Text(
       AppLocalizations.of(context)!.notes,
-      style: const TextStyle(
+      style:  TextStyle(
           fontWeight: FontWeight.w700,
-          fontFamily: 'Dancing Script',
-          fontSize: 40),
+          fontFamily: window.locale.languageCode == 'en'?  'Dancing Script' : 'Lemonada',
+          fontSize: window.locale.languageCode == 'en'? 40 : 25),
     ),
     elevation: 0,
     actions: [

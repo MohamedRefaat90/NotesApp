@@ -14,6 +14,7 @@ import 'View/NotesView/NoteView_cubit/notes_view_cubit.dart';
 import 'View/NotesView/NotesView.dart';
 import 'constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = myBlocObserver();
@@ -38,8 +39,17 @@ class NotesApp extends StatelessWidget {
           title: 'Notes App',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              brightness: BlocProvider.of<NotesViewCubit>(context).themeMode,
-              useMaterial3: true),
+            brightness: BlocProvider.of<NotesViewCubit>(context).themeMode,
+            useMaterial3: true,
+            textTheme: TextTheme(
+              bodySmall: TextStyle(fontFamily: "Almarai", color: Colors.white),
+              bodyMedium: TextStyle(fontFamily: "Almarai"),
+              bodyLarge: TextStyle(fontFamily: "Almarai"),
+              titleMedium: TextStyle(fontFamily: "Almarai", color: Colors.white),
+              titleLarge: TextStyle(fontFamily: "Almarai"),
+              labelLarge: TextStyle(fontFamily: "Almarai" ),
+            ),
+          ),
           routes: {
             NotesView.id: (context) => const NotesView(),
             NotesDetailes.id: (context) => const NotesDetailes(),
@@ -53,7 +63,7 @@ class NotesApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: l10n.all,
-          home: const SafeArea(child: NotesView()),
+          home:  SafeArea(child: NotesView()),
         );
       },
     );

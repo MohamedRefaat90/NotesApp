@@ -36,3 +36,7 @@ class AddNoteVoiceFailure extends AddNoteState {
     required this.errorMSG,
   });
 }
+
+class AddNoteDocumentSuccess extends AddNoteState {}
+
+class AddNoteDocumentFailure extends AddNoteState {}

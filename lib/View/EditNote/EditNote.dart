@@ -7,10 +7,12 @@ import 'package:notes/View/NotesView/NoteView_cubit/notes_view_cubit.dart';
 import '../../Models/NoteModel.dart';
 import '../../constants.dart';
 import '../AddNote/Widgets/ColorPallate.dart';
+import '../AddNote/Widgets/pickDocument.dart';
 import '../AddNote/Widgets/pickImageFile.dart';
 import '../AddNote/Widgets/pickVoiceFile.dart';
 import 'Widgets/editButton.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class EditNote extends StatefulWidget {
   const EditNote({Key? key}) : super(key: key);
   static String id = "EditNote";
@@ -26,7 +28,7 @@ class _EditNoteState extends State<EditNote> {
     String? title, description;
     return Scaffold(
         appBar: AppBar(
-          title:  Text(AppLocalizations.of(context)!.edit_note),
+          title: Text(AppLocalizations.of(context)!.edit_note),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -54,6 +56,8 @@ class _EditNoteState extends State<EditNote> {
                 const SizedBox(height: 20),
                 const pickVoiceFile(),
                 const SizedBox(height: 20),
+                pickDocument(),
+                const SizedBox(height: 20),
                 const ColorPallate(),
                 const SizedBox(height: 20),
                 EditButton(
@@ -67,7 +71,12 @@ class _EditNoteState extends State<EditNote> {
                     note.record =
                         BlocProvider.of<AddNoteCubit>(context).voiceNote ??
                             note.record;
-                    note.color = noteColors[BlocProvider.of<AddNoteCubit>(context).selectedColor];
+                    note.color = kNoteColors[
+                        BlocProvider.of<AddNoteCubit>(context).selectedColor];
+                    note.docs =
+                        BlocProvider.of<AddNoteCubit>(context).docs.isEmpty
+                            ? note.docs
+                            : BlocProvider.of<AddNoteCubit>(context).docs;
                     note.save();
                     BlocProvider.of<NotesViewCubit>(context).fetchAllNotes();
                     Navigator.of(context).pop();

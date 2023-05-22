@@ -5,8 +5,10 @@ import 'package:notes/Models/NoteModel.dart';
 import 'package:notes/View/EditNote/EditNote.dart';
 
 import 'NotesDetailes_cubit/notes_detailes_cubit.dart';
+import 'Widgets/DocsView.dart';
 import 'Widgets/ImageNote.dart';
 import 'Widgets/VoiceNote.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotesDetailes extends StatefulWidget {
   const NotesDetailes({super.key});
@@ -35,21 +37,19 @@ class _NotesDetailesState extends State<NotesDetailes> {
     super.dispose();
   }
 
-
-x(VoiceNote)async{
-   await   player!.preparePlayer(
+  x(VoiceNote) async {
+    await player!.preparePlayer(
       path: VoiceNote,
       shouldExtractWaveform: true,
       noOfSamples: 100,
       volume: 1.0,
     );
-}
+  }
 
   @override
   Widget build(BuildContext context) {
     NoteModel note = ModalRoute.of(context)!.settings.arguments as NoteModel;
     x(note.record);
-    // BlocProvider.of<NotesDetailesCubit>(context).initPlayer(note.record!);
     return BlocProvider(
       create: (context) => NotesDetailesCubit(),
       child: Scaffold(
@@ -65,7 +65,7 @@ x(VoiceNote)async{
                 Navigator.pushNamed(context, EditNote.id, arguments: note);
               },
               icon: const Icon(Icons.edit),
-              tooltip: "Edit Note",
+              tooltip: AppLocalizations.of(context)!.edit_note,
             )
           ],
         ),
@@ -79,12 +79,16 @@ x(VoiceNote)async{
                   note.title,
                   style: const TextStyle(fontSize: 40),
                 ),
-                const SizedBox(height: 10),
                 Text(note.note ?? ""),
-                const SizedBox(height: 30),
+                SizedBox(height: note.note == "" ? 0 : 30),
                 ImageNote(img: note.image),
                 const SizedBox(height: 30),
-                VoiceNote(controller: player, noteVoice: note.record, waveColor : note.color!)
+                VoiceNote(
+                    controller: player,
+                    noteVoice: note.record,
+                    waveColor: note.color!),
+                SizedBox(height: 20),
+                DocsView(note: note)
               ],
             ),
           ),

@@ -19,7 +19,7 @@ class AddButton extends StatelessWidget {
           listener: (context, state) {
             if (state is AddNoteSuccess) {
               BlocProvider.of<NotesViewCubit>(context).fetchAllNotes();
-              BlocProvider.of<AddNoteCubit>(context).resetPickers();
+
               Navigator.of(context).pop();
             } else if (state is AddNoteFailure) {
               debugPrint('Fail');
@@ -27,10 +27,10 @@ class AddButton extends StatelessWidget {
           },
           builder: (context, state) => MaterialButton(
                 onPressed: press,
-                color: Colors.green.withOpacity(0.7),
+                color: Colors.purple.withOpacity(0.7),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                child:  Text(AppLocalizations.of(context)!.add_note_btn),
+                child:  Text(AppLocalizations.of(context)!.add_note_btn, style: TextStyle(color: Colors.white),),
               )),
     ));
   }

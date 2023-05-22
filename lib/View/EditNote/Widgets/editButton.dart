@@ -15,10 +15,10 @@ class EditButton extends StatelessWidget {
           height: 50,
           child: MaterialButton(
             onPressed: press,
-            color: Colors.green.withOpacity(0.7),
+            color: Colors.purple.withOpacity(0.7),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: Text(AppLocalizations.of(context)!.edit_note),
+            child: Text(AppLocalizations.of(context)!.edit_note, style: TextStyle(color: Colors.white),),
           )),
     );
   }

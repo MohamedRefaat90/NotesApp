@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 String kNotesBox = "NoteBox";
 
-List<int> noteColors = [
+List<int> kNoteColors = [
   const Color(0xfff1916d).value,
-  const Color(0xfff5d7db).value,
+  Color.fromARGB(255, 62, 195, 122).value,
   const Color(0xffbd83b8).value,
   const Color(0xff473e66).value,
   const Color(0xff1b3358).value,

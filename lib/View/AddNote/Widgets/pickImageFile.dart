@@ -65,6 +65,7 @@ class pickImageFile extends StatelessWidget {
                 onChanged: (value) {},
                 items: [
                   DropdownMenuItem(
+                    value: 'Gallery',
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(AppLocalizations.of(context)!.pick_image),
@@ -75,7 +76,7 @@ class pickImageFile extends StatelessWidget {
                     },
                   ),
                   DropdownMenuItem(
-                      value: 'Recorde',
+                      value: 'Camera',
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child:

@@ -15,24 +15,45 @@ class PlayPauseBTN extends StatefulWidget {
   State<PlayPauseBTN> createState() => _PlayPauseBTNState();
 }
 
-class _PlayPauseBTNState extends State<PlayPauseBTN> {
-  bool isPlayed = true;
+class _PlayPauseBTNState extends State<PlayPauseBTN>
+    with TickerProviderStateMixin {
+  late bool isPlayed;
+  AnimationController? controller;
+
+  @override
+  void initState() {
+    isPlayed = false;
+    controller = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 400),
+        reverseDuration: Duration(milliseconds: 400));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: Icon(!isPlayed ? Icons.pause : Icons.play_arrow, size: 40),
-        tooltip: 'Play',
+        icon: AnimatedIcon(
+          progress: controller!,
+          icon: AnimatedIcons.pause_play,
+          size: 40,
+          color: Colors.white,
+        ),
+        tooltip: 'Play/Pause',
         onPressed: () async {
-          if (!isPlayed) {
+          if (isPlayed) {
+            setState(() {
+              isPlayed = false;
+            });
             await widget.controller!.pausePlayer();
-            isPlayed = true;
-            setState(() {});
+            controller!.forward();
           } else {
-            await widget.controller!.startPlayer(finishMode: FinishMode.pause, forceRefresh: true);
-
-            isPlayed = false;
-            setState(() {});
+            setState(() {
+              isPlayed = true;
+            });
+            await widget.controller!
+                .startPlayer(finishMode: FinishMode.pause, forceRefresh: true);
+            controller!.reverse();
           }
         });
   }

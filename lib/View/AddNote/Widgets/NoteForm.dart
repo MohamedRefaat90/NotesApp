@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'NoteField.dart';
-
 class NoteForm extends StatefulWidget {
   const NoteForm({Key? key, required this.formkey}) : super(key: key);
 
@@ -26,7 +25,7 @@ class _NoteFormState extends State<NoteForm> {
               title: AppLocalizations.of(context)!.title,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return "Filed Must not be Empty";
+                  return AppLocalizations.of(context)!.field_empty;
                 } else {
                   return null;
                 }
