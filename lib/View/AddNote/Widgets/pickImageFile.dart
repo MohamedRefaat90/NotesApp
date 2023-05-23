@@ -4,8 +4,13 @@ import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class pickImageFile extends StatelessWidget {
+class pickImageFile extends StatefulWidget {
   const pickImageFile({super.key});
+  @override
+  State<pickImageFile> createState() => _pickImageFileState();
+}
+
+class _pickImageFileState extends State<pickImageFile> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -42,14 +47,14 @@ class pickImageFile extends StatelessWidget {
                         },
                         builder: (context, state) => CircleAvatar(
                             backgroundColor:
-                                (BlocProvider.of<AddNoteCubit>(context)
-                                        .pickImageSuccess )
+                                BlocProvider.of<AddNoteCubit>(context)
+                                        .pickImageSuccess
                                     ? Colors.green
                                     : Colors.red,
                             radius: 10,
                             child: Icon(
-                              (BlocProvider.of<AddNoteCubit>(context)
-                                      .pickImageSuccess )
+                              BlocProvider.of<AddNoteCubit>(context)
+                                      .pickImageSuccess
                                   ? Icons.done
                                   : Icons.cancel_outlined,
                               size: 20,

@@ -3,16 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'bottomSheet.dart';
+import '../../../Models/NoteModel.dart';
+import '../../AddNote/Widgets/bottomSheet.dart';
 
-class pickVoiceFile extends StatefulWidget {
-  const pickVoiceFile({super.key});
-
+class EditVoiceFile extends StatefulWidget {
+  const EditVoiceFile({super.key, this.note});
+  final NoteModel? note;
   @override
-  State<pickVoiceFile> createState() => _pickVoiceFileState();
+  State<EditVoiceFile> createState() => _EditVoiceFileState();
 }
 
-class _pickVoiceFileState extends State<pickVoiceFile> {
+class _EditVoiceFileState extends State<EditVoiceFile> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -48,15 +49,12 @@ class _pickVoiceFileState extends State<pickVoiceFile> {
                           }
                         },
                         builder: (context, state) => CircleAvatar(
-                            backgroundColor:
-                                BlocProvider.of<AddNoteCubit>(context)
-                                        .pickVoiceSuccess
-                                    ? Colors.green
-                                    : Colors.red,
+                            backgroundColor: widget.note!.record!.isNotEmpty
+                                ? Colors.green
+                                : Colors.red,
                             radius: 10,
                             child: Icon(
-                              BlocProvider.of<AddNoteCubit>(context)
-                                      .pickVoiceSuccess
+                              widget.note!.record!.isNotEmpty
                                   ? Icons.done
                                   : Icons.cancel_outlined,
                               size: 20,

@@ -1,18 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/Models/NoteModel.dart';
 import 'package:notes/View/AddNote/AddNote_cubit/add_note_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'bottomSheet.dart';
 
-class pickVoiceFile extends StatefulWidget {
-  const pickVoiceFile({super.key});
-
+class EditImageFile extends StatefulWidget {
+  const EditImageFile({super.key, this.note});
+  final NoteModel? note;
   @override
-  State<pickVoiceFile> createState() => _pickVoiceFileState();
+  State<EditImageFile> createState() => _EditImageFileState();
 }
 
-class _pickVoiceFileState extends State<pickVoiceFile> {
+class _EditImageFileState extends State<EditImageFile> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,7 +21,7 @@ class _pickVoiceFileState extends State<pickVoiceFile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context)!.note_voice_title,
+              AppLocalizations.of(context)!.note_Image_title,
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 10),
@@ -36,27 +36,24 @@ class _pickVoiceFileState extends State<pickVoiceFile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context)!.pick_voice_hint),
+                      Text(AppLocalizations.of(context)!.pick_Image_hint),
                       BlocConsumer<AddNoteCubit, AddNoteState>(
                         listener: (context, state) {
-                          if (state is AddNoteVoiceSuccess) {
+                          if (state is AddNoteImageSuccess) {
                             BlocProvider.of<AddNoteCubit>(context)
-                                .pickVoiceSuccess = true;
-                          } else if (state is AddNoteVoiceFailure) {
+                                .pickImageSuccess = true;
+                          } else if (state is AddNoteImageFailure) {
                             BlocProvider.of<AddNoteCubit>(context)
-                                .pickVoiceSuccess = false;
+                                .pickImageSuccess = false;
                           }
                         },
                         builder: (context, state) => CircleAvatar(
-                            backgroundColor:
-                                BlocProvider.of<AddNoteCubit>(context)
-                                        .pickVoiceSuccess
-                                    ? Colors.green
-                                    : Colors.red,
+                            backgroundColor: widget.note!.image!.isNotEmpty
+                                ? Colors.green
+                                : Colors.red,
                             radius: 10,
                             child: Icon(
-                              BlocProvider.of<AddNoteCubit>(context)
-                                      .pickVoiceSuccess
+                              widget.note!.image!.isNotEmpty
                                   ? Icons.done
                                   : Icons.cancel_outlined,
                               size: 20,
@@ -72,26 +69,26 @@ class _pickVoiceFileState extends State<pickVoiceFile> {
                 onChanged: (value) {},
                 items: [
                   DropdownMenuItem(
-                    value: 'Voice Note',
+                    value: 'Gallery',
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(AppLocalizations.of(context)!.pick_voice),
+                      child: Text(AppLocalizations.of(context)!.pick_image),
                     ),
                     onTap: () {
-                      BlocProvider.of<AddNoteCubit>(context).pickAudioFile();
+                      BlocProvider.of<AddNoteCubit>(context)
+                          .pickImage("Gallery");
                     },
                   ),
                   DropdownMenuItem(
-                      value: 'Recorde',
+                      value: 'Camera',
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child:
-                            Text(AppLocalizations.of(context)!.recorde_voice),
+                            Text(AppLocalizations.of(context)!.capture_image),
                       ),
                       onTap: () async {
                         BlocProvider.of<AddNoteCubit>(context)
-                            .openBottomSheet(context);
-                        bottomSheet(context);
+                            .pickImage("Camera");
                       }),
                 ],
               )),

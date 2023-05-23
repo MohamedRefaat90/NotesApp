@@ -23,6 +23,7 @@ class _NoteFormState extends State<NoteForm> {
           children: [
             NoteFiled(
               title: AppLocalizations.of(context)!.title,
+              maxLine: 1,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
                   return AppLocalizations.of(context)!.field_empty;

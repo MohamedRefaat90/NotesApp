@@ -8,8 +8,8 @@ import '../../Models/NoteModel.dart';
 import '../../constants.dart';
 import '../AddNote/Widgets/ColorPallate.dart';
 import '../AddNote/Widgets/pickDocument.dart';
-import '../AddNote/Widgets/pickImageFile.dart';
-import '../AddNote/Widgets/pickVoiceFile.dart';
+import 'Widgets/EditImageFile.dart';
+import 'Widgets/EditVoiceFile.dart';
 import 'Widgets/editButton.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -52,9 +52,9 @@ class _EditNoteState extends State<EditNote> {
                   },
                 ),
                 const SizedBox(height: 20),
-                const pickImageFile(),
+                EditImageFile(note: note),
                 const SizedBox(height: 20),
-                const pickVoiceFile(),
+                EditVoiceFile(note: note),
                 const SizedBox(height: 20),
                 pickDocument(),
                 const SizedBox(height: 20),
