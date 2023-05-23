@@ -18,7 +18,7 @@ class VoiceNote extends StatelessWidget {
     return noteVoice!.isEmpty
         ? Container()
         : Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 10),
             decoration: BoxDecoration(
                 color: Colors.black87, borderRadius: BorderRadius.circular(16)),
             child: Column(

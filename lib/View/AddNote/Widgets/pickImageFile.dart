@@ -43,13 +43,13 @@ class pickImageFile extends StatelessWidget {
                         builder: (context, state) => CircleAvatar(
                             backgroundColor:
                                 (BlocProvider.of<AddNoteCubit>(context)
-                                        .pickImageSuccess || BlocProvider.of<AddNoteCubit>(context).imgNote!.isNotEmpty)
+                                        .pickImageSuccess )
                                     ? Colors.green
                                     : Colors.red,
                             radius: 10,
                             child: Icon(
                               (BlocProvider.of<AddNoteCubit>(context)
-                                      .pickImageSuccess || BlocProvider.of<AddNoteCubit>(context).imgNote!.isNotEmpty)
+                                      .pickImageSuccess )
                                   ? Icons.done
                                   : Icons.cancel_outlined,
                               size: 20,

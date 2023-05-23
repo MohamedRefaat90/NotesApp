@@ -69,8 +69,9 @@ class _EditNoteState extends State<EditNote> {
                             ? note.image
                             : BlocProvider.of<AddNoteCubit>(context).imgNote;
                     note.record =
-                        BlocProvider.of<AddNoteCubit>(context).voiceNote ??
-                            note.record;
+                        BlocProvider.of<AddNoteCubit>(context).voiceNote == ''
+                            ? note.record
+                            : BlocProvider.of<AddNoteCubit>(context).voiceNote;
                     note.color = kNoteColors[
                         BlocProvider.of<AddNoteCubit>(context).selectedColor];
                     note.docs =
@@ -79,6 +80,7 @@ class _EditNoteState extends State<EditNote> {
                             : BlocProvider.of<AddNoteCubit>(context).docs;
                     note.save();
                     BlocProvider.of<NotesViewCubit>(context).fetchAllNotes();
+                    BlocProvider.of<AddNoteCubit>(context).resetPickers();
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
                   },

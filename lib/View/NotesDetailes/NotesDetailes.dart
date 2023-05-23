@@ -63,7 +63,7 @@ class _NotesDetailesState extends State<NotesDetailes> {
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, EditNote.id, arguments: note);
-                player!.dispose();
+                player!.pausePlayer();
               },
               icon: const Icon(Icons.edit),
               tooltip: AppLocalizations.of(context)!.edit_note,

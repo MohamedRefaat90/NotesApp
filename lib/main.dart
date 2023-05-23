@@ -45,16 +45,17 @@ class NotesApp extends StatelessWidget {
               bodySmall: TextStyle(fontFamily: "Almarai", color: Colors.white),
               bodyMedium: TextStyle(fontFamily: "Almarai"),
               bodyLarge: TextStyle(fontFamily: "Almarai"),
-              titleMedium: TextStyle(fontFamily: "Almarai", color: Colors.white),
+              titleMedium:
+                  TextStyle(fontFamily: "Almarai", color: Colors.white),
               titleLarge: TextStyle(fontFamily: "Almarai"),
-              labelLarge: TextStyle(fontFamily: "Almarai" ),
+              labelLarge: TextStyle(fontFamily: "Almarai"),
             ),
           ),
           routes: {
             NotesView.id: (context) => const NotesView(),
             NotesDetailes.id: (context) => const NotesDetailes(),
             AddNote.id: (context) => const AddNote(),
-            EditNote.id: (context) => const EditNote(),
+            EditNote.id: (context) => EditNote(),
           },
           localizationsDelegates: const [
             AppLocalizations.delegate,
@@ -63,7 +64,7 @@ class NotesApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: l10n.all,
-          home:  SafeArea(child: NotesView()),
+          home: SafeArea(child: NotesView()),
         );
       },
     );
