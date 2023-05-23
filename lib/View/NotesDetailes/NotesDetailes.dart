@@ -63,6 +63,7 @@ class _NotesDetailesState extends State<NotesDetailes> {
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, EditNote.id, arguments: note);
+                player!.dispose();
               },
               icon: const Icon(Icons.edit),
               tooltip: AppLocalizations.of(context)!.edit_note,
@@ -77,8 +78,9 @@ class _NotesDetailesState extends State<NotesDetailes> {
               children: [
                 Text(
                   note.title,
-                  style: const TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.07, fontWeight: FontWeight.bold),
                 ),
+                SizedBox(height: 20),
                 Text(note.note ?? ""),
                 SizedBox(height: note.note == "" ? 0 : 30),
                 ImageNote(img: note.image),

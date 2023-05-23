@@ -21,8 +21,8 @@ class NoteFiled extends StatelessWidget {
       maxLines: maxLine,
       autovalidateMode: BlocProvider.of<AddNoteCubit>(context).autovalidateMode,
       onChanged: onChanged,
-      decoration: InputDecoration(
-          hintText: title, border: const OutlineInputBorder()),
+      initialValue: title,
+      decoration: InputDecoration(border: const OutlineInputBorder()),
     );
   }
 }

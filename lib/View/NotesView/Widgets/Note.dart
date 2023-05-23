@@ -53,7 +53,7 @@ class Note extends StatelessWidget {
               // const SizedBox(height: 10),
               Text(
                 '${note.note}',
-                maxLines: 4,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
               const Spacer(),

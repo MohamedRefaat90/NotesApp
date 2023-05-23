@@ -19,8 +19,7 @@ class _ImageNoteState extends State<ImageNote> {
         ? Container()
         : Center(
             child: SizedBox(
-              width: 370,
-              height: 270,
+              height: 300,
               child: InteractiveViewer(
                   child: Image.file(
                 File(widget.img!),

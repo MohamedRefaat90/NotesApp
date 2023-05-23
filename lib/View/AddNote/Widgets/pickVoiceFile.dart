@@ -43,14 +43,20 @@ class pickVoiceFile extends StatelessWidget {
                         },
                         builder: (context, state) => CircleAvatar(
                             backgroundColor:
-                                BlocProvider.of<AddNoteCubit>(context)
-                                        .pickVoiceSuccess
+                                (BlocProvider.of<AddNoteCubit>(context)
+                                            .pickVoiceSuccess ||
+                                        BlocProvider.of<AddNoteCubit>(context)
+                                            .voiceNote!
+                                            .isNotEmpty)
                                     ? Colors.green
                                     : Colors.red,
                             radius: 10,
                             child: Icon(
-                              BlocProvider.of<AddNoteCubit>(context)
-                                      .pickVoiceSuccess
+                              (BlocProvider.of<AddNoteCubit>(context)
+                                          .pickVoiceSuccess ||
+                                      BlocProvider.of<AddNoteCubit>(context)
+                                          .voiceNote!
+                                          .isNotEmpty)
                                   ? Icons.done
                                   : Icons.cancel_outlined,
                               size: 20,
