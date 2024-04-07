@@ -3,31 +3,31 @@
     "@language" :{
         "descriptopn": "the Current Language"
     },
-    "notes" : "Notes",
-    "notes_empty": "No Notes has been Added Yet",
-    "add_note_title" : "Add New Note",
+    "tasks" : "tasks",
+    "tasks_empty": "No tasks has been Added Yet",
+    "add_task_title" : "Add New task",
     "title": "Title",
-    "description": "Note Description",
+    "description": "task Description",
     "field_empty" : "Filed Must not be Empty",
 
-    "note_Image_title" : "Pick Image For Note",
+    "task_Image_title" : "Pick Image For task",
     "pick_Image_hint" : "Pick Image",
     "capture_image": "Capture Image",
     "pick_image": "Pick From Gallery",
 
-    "note_voice_title" : "Pick Voice For Note",
+    "task_voice_title" : "Pick Voice For task",
     "pick_voice_hint" : "Pick Voice",
-    "recorde_voice": "Recorde Voice Note",
-    "pick_voice": "Pick Voice Note",
+    "recorde_voice": "Recorde Voice task",
+    "pick_voice": "Pick Voice task",
     "start_record": "Start Recording",
     "stop_record": "Stop Recording",
 
-    "add_note_btn" : "Add Note",
+    "add_task_btn" : "Add task",
 
-    "edit_note" : "Edit Note",
+    "edit_task" : "Edit task",
 
     "warning_title" : "Warning",
-    "warning_msg" : "Are You Sure Wanna to Delete This Note",
+    "warning_msg" : "Are You Sure Wanna to Delete This task",
     "yes" : "Yes",
     "no" : "No",
 

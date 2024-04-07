@@ -1,28 +1,28 @@
 {
     "language": "Arabic",
-    "notes": "ملاحظات",
-    "notes_empty": "لم يتم اضافة اي ملاحظات بعد",
+    "tasks": "ملاحظات",
+    "tasks_empty": "لم يتم اضافة اي ملاحظات بعد",
     
-    "add_note_title" : "اضافة ملاحظة جديدة",
+    "add_task_title" : "اضافة ملاحظة جديدة",
     "title": "عنوان الملاحظة",
     "description": "محتوي الملاحظة",
     "field_empty" : "لا يجب ان يكون الحقل فارغا",
 
-    "note_Image_title" : "اختر صورة للملاحظة",
+    "task_Image_title" : "اختر صورة للملاحظة",
     "pick_Image_hint" : "اختر صورة",
     "capture_image": "التقط صورة من الكاميرا",
     "pick_image": "اختر صورة من المعرض",
 
-    "note_voice_title" : "اضافة ملاحظة صوتية",
+    "task_voice_title" : "اضافة ملاحظة صوتية",
     "pick_voice_hint" : "اختر ملاحظة صوتية",
     "recorde_voice": "سجل الملاحظة الصوتية",
     "pick_voice": "اختر الملاحظة الصوتية من الملفات",
     "start_record": "بدء التسجيل",
     "stop_record": "انتهاء التسجيل",
 
-    "add_note_btn" : "أضافة ملاحظة",
+    "add_task_btn" : "أضافة ملاحظة",
 
-    "edit_note" : "تعديل الملاحظة",
+    "edit_task" : "تعديل الملاحظة",
 
     "warning_title" : "تحذير",
     "warning_msg" : "هل انت متأكد من انك تريد حذف هذة الملاحظة",
